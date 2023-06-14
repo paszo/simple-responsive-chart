@@ -26,12 +26,22 @@ function BarChart({ data }) {
   // will be called initially and on every data change
   useEffect(() => {
     const svg = select(svgRef.current);
-    console.log(dimensions);
 
     if (!dimensions) return;
 
-    const width = dimensions.width;
-    const height = dimensions.height;
+    let width = dimensions.width;
+    let height = dimensions.height;
+
+    const minWidth = 150;
+    const minHeight = 150;
+
+    if(width < minWidth) {
+      width = minWidth;
+    }
+
+    if(height < minHeight){
+      height = minHeight;
+    }
 
     const margin = { top: 50, bottom: 50, left: 50, right: 50 };
     const innerWidth = width - margin.left - margin.right;
